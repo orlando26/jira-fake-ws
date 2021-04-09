@@ -11,12 +11,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity(name = "comments")
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Comment {
+public class Comment extends JiraFakeEntity {
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,24 +29,17 @@ public class Comment {
     private String text;
 
     @Column(name = "user_id")
-    private Int userId;
+    private Integer userId;
 
     @Column(name = "issue_id")
-    private Int issueId;
-
-    @Column(name = "creation_date")
-    private Date creationDate;
-
-    @Column(name = "update_date")
-    private Date updateDate;
+    private Integer issueId;
 
     @Builder
-    public Comment(Integer id, String text, Int userId, Int issueId, Date creationDate, Date updateDate) {
+    public Comment(Integer id, String text, Integer userId, Integer issueId) {
+        super();
         this.id = id;
         this.text = text;
         this.userId = userId;
         this.issueId = issueId;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
     }
 }

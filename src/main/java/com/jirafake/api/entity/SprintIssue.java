@@ -24,13 +24,13 @@ public class SprintIssue {
     private Integer id;
 
     @Column(name = "sprint_id")
-    private Int sprintId;
+    private Integer sprintId;
 
     @Column(name = "issue_id")
-    private Int issueId;
+    private Integer issueId;
 
     @Builder
-    public SprintIssue(Integer id, Int sprintId, Int issueId) {
+    public SprintIssue(Integer id, Integer sprintId, Integer issueId) {
         this.id = id;
         this.sprintId = sprintId;
         this.issueId = issueId;

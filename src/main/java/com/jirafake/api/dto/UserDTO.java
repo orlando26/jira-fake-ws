@@ -1,16 +1,19 @@
 package com.jirafake.api.dto;
 
+import com.jirafake.api.entity.JiraFakeEntity;
 import com.jirafake.api.entity.User;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
 @NoArgsConstructor
-public class UserDTO {
+@EqualsAndHashCode(callSuper = false)
+public class UserDTO extends JiraFakeEntity {
 
     private Integer id;
 
@@ -31,15 +34,12 @@ public class UserDTO {
 
     private String avatarUrl;
 
-    private Int rolId;
-
-    private Date creationDate;
-
-    private Date updateDate;
+    private Integer rolId;
 
     @Builder
     public UserDTO(Integer id, String username, String password, String name, String lastname,
-                   String email, String avatarUrl, Int rolId, Date creationDate, Date updateDate) {
+                   String email, String avatarUrl, Integer rolId) {
+        super();
         this.id = id;
         this.username = username;
         this.password = password;
@@ -48,8 +48,6 @@ public class UserDTO {
         this.email = email;
         this.avatarUrl = avatarUrl;
         this.rolId = rolId;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
     }
 
     public UserDTO(User user) {
@@ -61,8 +59,6 @@ public class UserDTO {
         this.email = user.getEmail();
         this.avatarUrl = user.getAvatarUrl();
         this.rolId = user.getRolId();
-        this.creationDate = user.getCreationDate();
-        this.updateDate = user.getUpdateDate();
     }
 
     public User toEntity() {
@@ -75,8 +71,6 @@ public class UserDTO {
         .email(email)
         .avatarUrl(avatarUrl)
         .rolId(rolId)
-        .creationDate(creationDate)
-        .updateDate(updateDate)
         .build();
     }
 }

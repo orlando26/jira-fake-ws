@@ -11,12 +11,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
 @Entity(name = "user")
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class User {
+public class User extends JiraFakeEntity{
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,18 +43,12 @@ public class User {
     @Column(name = "avatar_url")
     private String avatarUrl;
 
-    @Column(name = "rol_id")
-    private Int rolId;
-
-    @Column(name = "creation_date")
-    private Date creationDate;
-
-    @Column(name = "update_date")
-    private Date updateDate;
+    @Column(name = "rol_id", columnDefinition = "TINYINT(2)")
+    private Integer rolId;
 
     @Builder
     public User(Integer id, String username, String password, String name, String lastname,
-                String email, String avatarUrl, Int rolId, Date creationDate, Date updateDate) {
+                String email, String avatarUrl, Integer rolId) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -61,7 +57,5 @@ public class User {
         this.email = email;
         this.avatarUrl = avatarUrl;
         this.rolId = rolId;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
     }
 }

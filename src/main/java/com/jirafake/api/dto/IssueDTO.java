@@ -1,54 +1,54 @@
 package com.jirafake.api.dto;
 
 import com.jirafake.api.entity.Issue;
+import com.jirafake.api.entity.JiraFakeEntity;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotBlank;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
 
 @Data
 @NoArgsConstructor
-public class IssueDTO {
+@EqualsAndHashCode(callSuper = false)
+public class IssueDTO extends JiraFakeEntity {
 
-    private Int id;
+    private Integer id;
 
-    private Int projectId;
+    private Integer projectId;
 
     @NotBlank(message = "title is mandatory")
     private String title;
 
-    private Int typeId;
+    private Integer typeId;
 
     @NotBlank(message = "description is mandatory")
     private String description;
 
     @NotBlank(message = "priority is mandatory")
-    private Int priorityId;
+    private Integer priorityId;
 
-    private Int statusId;
+    private Integer statusId;
 
-    private Int storyPoints;
+    private Integer storyPoints;
 
-    private Int timeEstimate;
+    private Integer timeEstimate;
 
-    private Int timeSpent;
+    private Integer timeSpent;
 
-    private Int reporterId;
+    private Integer reporterId;
 
-    private Int ownerId;
+    private Integer ownerId;
 
-    private Int subtaskId;
-
-    private Date creationDate;
-
-    private Date updateDate;
+    private Integer subtaskId;
 
     @Builder
-    public IssueDTO(Int id, Int projectId, String title, Int typeId, String description,
-                    Int priorityId, Int statusId, Int storyPoints, Int timeEstimate, Int timeSpent,
-                    Int reporterId, Int ownerId, Int subtaskId, Date creationDate, Date updateDate) {
+    public IssueDTO(Int id, Integer projectId, String title, Integer typeId, String description,
+                    Integer priorityId, Integer statusId, Integer storyPoints, Integer timeEstimate, Integer timeSpent,
+                    Integer reporterId, Integer ownerId, Integer subtaskId) {
+        super();
         this.id = id;
         this.projectId = projectId;
         this.title = title;
@@ -62,8 +62,6 @@ public class IssueDTO {
         this.reporterId = reporterId;
         this.ownerId = ownerId;
         this.subtaskId = subtaskId;
-        this.creationDate = creationDate;
-        this.updateDate = updateDate;
     }
 
     public IssueDTO(Issue issue) {
@@ -80,8 +78,6 @@ public class IssueDTO {
         this.reporterId = issue.getReporterId();
         this.ownerId = issue.getOwnerId();
         this.subtaskId = issue.getSubtaskId();
-        this.creationDate = issue.getCreationDate();
-        this.updateDate = issue.getUpdateDate();
     }
 
     public Issue toEntity() {
@@ -99,8 +95,6 @@ public class IssueDTO {
         .reporterId(reporterId)
         .ownerId(ownerId)
         .subtaskId(subtaskId)
-        .creationDate(creationDate)
-        .updateDate(updateDate)
         .build();
     }
 }

@@ -12,12 +12,12 @@ public class SprintIssueDTO {
 
     private Integer id;
 
-    private Int sprintId;
+    private Integer sprintId;
 
-    private Int issueId;
+    private Integer issueId;
 
     @Builder
-    public SprintIssueDTO(Integer id, Int sprintId, Int issueId) {
+    public SprintIssueDTO(Integer id, Integer sprintId, Integer issueId) {
         this.id = id;
         this.sprintId = sprintId;
         this.issueId = issueId;
