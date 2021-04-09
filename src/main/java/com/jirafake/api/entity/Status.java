@@ -14,11 +14,11 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity(name = "project")
+@Entity(name = "status")
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Project extends JiraFakeEntity{
+public class Status extends JiraFakeEntity{
 
     @Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,15 +28,18 @@ public class Project extends JiraFakeEntity{
     @Column(name = "name")
     private String name;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "project_id")
+    private Integer projectId;
+
+    @Column(name = "done_status", columnDefinition = "TINYINT(1)")
+    private Boolean doneStatus;
 
     @Builder
-    public Project(Integer id, String name, String description) {
+	public Status(Integer id, String name, Integer projectId, Boolean doneStatus) {
         super();
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
-    
+		this.id = id;
+		this.name = name;
+		this.projectId = projectId;
+		this.doneStatus = doneStatus;
+	}
 }
