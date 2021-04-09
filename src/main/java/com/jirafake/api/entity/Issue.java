@@ -62,7 +62,7 @@ public class Issue extends JiraFakeEntity {
     private Integer subtaskId;
 
     @Builder
-    public Issue(Int id, Integer projectId, String title, Integer typeId, String description,
+    public Issue(Integer id, Integer projectId, String title, Integer typeId, String description,
                 Integer priorityId, Integer statusId, Integer storyPoints, Integer timeEstimate, Integer timeSpent,
                 Integer reporterId, Integer ownerId, Integer subtaskId) {
         super();

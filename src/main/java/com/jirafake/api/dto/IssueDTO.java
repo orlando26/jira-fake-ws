@@ -45,7 +45,7 @@ public class IssueDTO extends JiraFakeEntity {
     private Integer subtaskId;
 
     @Builder
-    public IssueDTO(Int id, Integer projectId, String title, Integer typeId, String description,
+    public IssueDTO(Integer id, Integer projectId, String title, Integer typeId, String description,
                     Integer priorityId, Integer statusId, Integer storyPoints, Integer timeEstimate, Integer timeSpent,
                     Integer reporterId, Integer ownerId, Integer subtaskId) {
         super();
